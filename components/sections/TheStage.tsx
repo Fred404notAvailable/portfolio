@@ -21,36 +21,40 @@ const EVENT_META: Record<string, { tag: string; desc: string }> = {
 // colSpan drives width, rowSpan drives height — some cards are 2× taller.
 // Pattern repeats every 12 photos so any number of photos works.
 const BENTO_CELLS: { colSpan: number; rowSpan: number }[] = [
-  // ── Pair 1 (rows 1-2): big left + two stacked right ──
-  { colSpan: 8, rowSpan: 2 },   //  0 — big tall-left
-  { colSpan: 4, rowSpan: 1 },   //  1 — top right    (8+4=12)
-  { colSpan: 4, rowSpan: 1 },   //  2 — bottom right (8+4=12)
-  // ── Pair 2 (rows 3-4): three equal + tall center ──
-  { colSpan: 4, rowSpan: 1 },   //  3 — left         (4+4+4=12)
-  { colSpan: 4, rowSpan: 2 },   //  4 — tall center
-  { colSpan: 4, rowSpan: 1 },   //  5 — right
-  { colSpan: 4, rowSpan: 1 },   //  6 — left bottom  (4+4+4=12)
-  { colSpan: 4, rowSpan: 1 },   //  7 — right bottom
-  // ── Pair 3 (rows 5-6): tall left + two wide right ──
-  { colSpan: 5, rowSpan: 2 },   //  8 — tall left
-  { colSpan: 7, rowSpan: 1 },   //  9 — wide top     (5+7=12)
-  { colSpan: 7, rowSpan: 1 },   // 10 — wide bottom  (5+7=12)
-  // ── Pair 4 (rows 7-8): halves + thirds ──
-  { colSpan: 6, rowSpan: 1 },   // 11 — half left    (6+6=12)
-  { colSpan: 6, rowSpan: 1 },   // 12 — half right
-  { colSpan: 3, rowSpan: 1 },   // 13 — third        (3+3+6=12)
-  { colSpan: 3, rowSpan: 1 },   // 14 — third
-  { colSpan: 6, rowSpan: 1 },   // 15 — half right
-  // ── Pair 5 (rows 9-10): tall left + stacked right ──
-  { colSpan: 7, rowSpan: 2 },   // 16 — tall left
-  { colSpan: 5, rowSpan: 1 },   // 17 — right top    (7+5=12)
-  { colSpan: 2, rowSpan: 1 },   // 18 — small
-  { colSpan: 3, rowSpan: 1 },   // 19 — small        (7+2+3=12)
-  // ── Pair 6 (rows 11-12): halves + wide ──
-  { colSpan: 6, rowSpan: 1 },   // 20 — half left    (6+6=12)
-  { colSpan: 6, rowSpan: 1 },   // 21 — half right
-  { colSpan: 7, rowSpan: 1 },   // 22 — wide         (7+5=12)
-  { colSpan: 5, rowSpan: 1 },   // 23 — medium
+  // Row 1
+  { colSpan: 7, rowSpan: 1 },   //  0
+  { colSpan: 5, rowSpan: 1 },   //  1
+  // Row 2
+  { colSpan: 4, rowSpan: 1 },   //  2
+  { colSpan: 4, rowSpan: 1 },   //  3
+  { colSpan: 4, rowSpan: 1 },   //  4
+  // Row 3
+  { colSpan: 5, rowSpan: 1 },   //  5
+  { colSpan: 7, rowSpan: 1 },   //  6
+  // Row 4
+  { colSpan: 3, rowSpan: 1 },   //  7
+  { colSpan: 6, rowSpan: 1 },   //  8
+  { colSpan: 3, rowSpan: 1 },   //  9
+  // Row 5
+  { colSpan: 6, rowSpan: 1 },   // 10
+  { colSpan: 6, rowSpan: 1 },   // 11
+  // Row 6
+  { colSpan: 8, rowSpan: 1 },   // 12
+  { colSpan: 4, rowSpan: 1 },   // 13
+  // Row 7
+  { colSpan: 4, rowSpan: 1 },   // 14
+  { colSpan: 8, rowSpan: 1 },   // 15
+  // Row 8
+  { colSpan: 5, rowSpan: 1 },   // 16
+  { colSpan: 4, rowSpan: 1 },   // 17
+  { colSpan: 3, rowSpan: 1 },   // 18
+  // Row 9
+  { colSpan: 7, rowSpan: 1 },   // 19
+  { colSpan: 5, rowSpan: 1 },   // 20
+  // Row 10
+  { colSpan: 4, rowSpan: 1 },   // 21
+  { colSpan: 4, rowSpan: 1 },   // 22
+  { colSpan: 4, rowSpan: 1 },   // 23
 ]
 
 // ── Single Card ───────────────────────────────────────────────────────────────
@@ -304,7 +308,7 @@ export default function TheStage() {
           <div className="gallery-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
-            gridAutoRows: 'clamp(160px, 19vh, 260px)',
+            gridAutoRows: 'clamp(200px, 24vh, 320px)',
             gridAutoFlow: 'dense',
             gap: 10,
           }}>
