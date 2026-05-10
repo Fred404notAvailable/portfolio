@@ -4,12 +4,12 @@ import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 import { Scan, ShieldAlert } from 'lucide-react'
 
 const WHY_CARDS = [
-  { number:'01', label:'CREATIVITY',   title:'A Decade of Creative Excellence', body:'PYROS has nurtured 150+ students across 8 art disciplines for over 10 years at KARE.' },
+  { number:'01', label:'CREATIVITY',   title:'Over Two Decades of Excellence', body:'PYROS has nurtured 150+ students across 8 art disciplines since 1999 at KARE.' },
   { number:'02', label:'COMPETITION',  title:'3× MEPCO Overall Champions', body:'We have dominated inter-college competitions across NIT, VIT, IIT, SRM, and more.' },
   { number:'03', label:'COMMUNITY',    title:'150+ Members, One Family', body:'Every team — from Music to Fashion — competes as one unified force on every stage.' },
   { number:'04', label:'PERFORMANCE',  title:'Two Flagship Events Per Year', body:'MIRTH (internal) and Sparkz (inter-college) — two massive stages, two chances to shine.' },
   { number:'05', label:'OPPORTUNITY',  title:'Perform at Any Stage', body:'Drama to Dance, Gaming to Literature — PYROS opens doors to every creative discipline.' },
-  { number:'06', label:'LEGACY',       title:'10+ Years of Trophies', body:'Our shelves are heavy with the absolute highest honors from prestigious cultural festivals across the nation.' },
+  { number:'06', label:'LEGACY',       title:'25+ Years of Trophies', body:'Our shelves are heavy with the absolute highest honors from prestigious cultural festivals across the nation.' },
   { number:'07', label:'TALENT',       title:'Elite Grooming', body:'We take raw, unpolished potential and meticulously train our students to be confident, national-level performers.' },
   { number:'08', label:'LIFESTYLE',    title:'More Than A Club', body:'Once a Pyros, always a Pyros. We build deep, lifelong networks with extremely talented alumni across the globe.' },
 ]
@@ -280,7 +280,7 @@ export default function TheCrest() {
             <circle cx="250" cy="250" r="210" fill="none" stroke="var(--gold)" strokeWidth="0.5" />
           </svg>
           <div className="crest-decor" style={{ position:'absolute', left:'50%', top:'50%', transform:'translate(-270px,-50%) rotate(-90deg)', fontFamily:'var(--font-mono)', fontSize:'9px', letterSpacing:'0.4em', color:'var(--sub)', opacity:0.6 }}>KALASALINGAM ACADEMY</div>
-          <div className="crest-decor" style={{ position:'absolute', left:'50%', top:'50%', transform:'translate(270px,-50%) rotate(90deg)', fontFamily:'var(--font-mono)', fontSize:'9px', letterSpacing:'0.4em', color:'var(--sub)', opacity:0.6 }}>ESTABLISHED 2014</div>
+          <div className="crest-decor" style={{ position:'absolute', left:'50%', top:'50%', transform:'translate(270px,-50%) rotate(90deg)', fontFamily:'var(--font-mono)', fontSize:'9px', letterSpacing:'0.4em', color:'var(--sub)', opacity:0.6 }}>ESTABLISHED 1999</div>
           <img id="pyros-crest" src="/logo/pyros-crest-final.png" alt="PYROS Crest"
             style={{ width:'100%', maxWidth:'400px', height:'auto', objectFit:'contain' }} />
         </div>
