@@ -92,11 +92,13 @@ export default function Battlegrounds() {
           })
         }
 
-        // Tactical rings rotation
+        // Tactical rings rotation — translateZ(0) promotes to GPU compositor layer
         if (document.querySelector('.battle-ring')) {
+          gsap.set('.battle-ring', { translateZ: 0 })
           gsap.to('.battle-ring', { rotation: 360, duration: 30, repeat: -1, ease: 'none', transformOrigin: 'center center' })
         }
         if (document.querySelector('.battle-ring-reverse')) {
+          gsap.set('.battle-ring-reverse', { translateZ: 0 })
           gsap.to('.battle-ring-reverse', { rotation: -360, duration: 40, repeat: -1, ease: 'none', transformOrigin: 'center center' })
         }
 
