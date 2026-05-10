@@ -21,39 +21,46 @@ const EVENT_META: Record<string, { tag: string; desc: string }> = {
 // colSpan drives width, rowSpan drives height — some cards are 2× taller.
 // Pattern repeats every 12 photos so any number of photos works.
 const BENTO_CELLS: { colSpan: number; rowSpan: number }[] = [
-  // Row 1
-  { colSpan: 7, rowSpan: 1 },   //  0
-  { colSpan: 5, rowSpan: 1 },   //  1
-  // Row 2
-  { colSpan: 4, rowSpan: 1 },   //  2
-  { colSpan: 4, rowSpan: 1 },   //  3
+  // Row 1-2 block: wide landscape left + two portrait stacked right
+  { colSpan: 8, rowSpan: 2 },   //  0 — wide tall   → 8 cols × 2 rows
+  { colSpan: 4, rowSpan: 1 },   //  1 — portrait top → 4 cols × 1 row  (8+4=12)
+  { colSpan: 4, rowSpan: 1 },   //  2 — portrait bot → 4 cols × 1 row  (8+4=12)
+
+  // Row 3: three equal landscape
+  { colSpan: 4, rowSpan: 1 },   //  3               → 4+4+4=12
   { colSpan: 4, rowSpan: 1 },   //  4
-  // Row 3
-  { colSpan: 5, rowSpan: 1 },   //  5
-  { colSpan: 7, rowSpan: 1 },   //  6
-  // Row 4
-  { colSpan: 3, rowSpan: 1 },   //  7
-  { colSpan: 6, rowSpan: 1 },   //  8
-  { colSpan: 3, rowSpan: 1 },   //  9
-  // Row 5
-  { colSpan: 6, rowSpan: 1 },   // 10
-  { colSpan: 6, rowSpan: 1 },   // 11
-  // Row 6
-  { colSpan: 8, rowSpan: 1 },   // 12
-  { colSpan: 4, rowSpan: 1 },   // 13
-  // Row 7
-  { colSpan: 4, rowSpan: 1 },   // 14
-  { colSpan: 8, rowSpan: 1 },   // 15
-  // Row 8
-  { colSpan: 5, rowSpan: 1 },   // 16
-  { colSpan: 4, rowSpan: 1 },   // 17
-  { colSpan: 3, rowSpan: 1 },   // 18
-  // Row 9
-  { colSpan: 7, rowSpan: 1 },   // 19
-  { colSpan: 5, rowSpan: 1 },   // 20
-  // Row 10
+  { colSpan: 4, rowSpan: 1 },   //  5
+
+  // Row 4-5 block: two portrait stacked left + wide landscape right
+  { colSpan: 4, rowSpan: 1 },   //  6 — portrait top → 4+8=12
+  { colSpan: 8, rowSpan: 2 },   //  7 — wide tall   → 8 cols × 2 rows
+  { colSpan: 4, rowSpan: 1 },   //  8 — portrait bot → 4+8=12
+
+  // Row 6: wide + narrow landscape
+  { colSpan: 7, rowSpan: 1 },   //  9               → 7+5=12
+  { colSpan: 5, rowSpan: 1 },   // 10
+
+  // Row 7-8 block: portrait left + two landscape stacked right
+  { colSpan: 5, rowSpan: 2 },   // 11 — portrait    → 5+7=12
+  { colSpan: 7, rowSpan: 1 },   // 12 — landscape
+  { colSpan: 7, rowSpan: 1 },   // 13               → 5+7=12
+
+  // Row 9: halves
+  { colSpan: 6, rowSpan: 1 },   // 14               → 6+6=12
+  { colSpan: 6, rowSpan: 1 },   // 15
+
+  // Row 10-11 block: wide landscape top + portrait right
+  { colSpan: 7, rowSpan: 1 },   // 16               → 7+5=12
+  { colSpan: 5, rowSpan: 2 },   // 17 — portrait
+  { colSpan: 7, rowSpan: 1 },   // 18               → 7+5=12
+
+  // Row 12: three thirds
+  { colSpan: 4, rowSpan: 1 },   // 19               → 4+4+4=12
+  { colSpan: 4, rowSpan: 1 },   // 20
   { colSpan: 4, rowSpan: 1 },   // 21
-  { colSpan: 4, rowSpan: 1 },   // 22
+
+  // Row 13: wide + narrow
+  { colSpan: 8, rowSpan: 1 },   // 22               → 8+4=12
   { colSpan: 4, rowSpan: 1 },   // 23
 ]
 
