@@ -5,7 +5,7 @@ export const STATS = [
   { value: 27, suffix: '+', label: 'Years of Fire', highlight: false },
   { value: 150, suffix: '+', label: 'Active Members', highlight: false },
   { value: 3, suffix: '×', label: 'MEPCO Champions', highlight: true },
-  { value: 2, suffix: '', label: 'Major Events', highlight: false },
+  { value: 5, suffix: '+', label: 'Major Events', highlight: false },
 ]
 
 export const TEAMS: Team[] = [
