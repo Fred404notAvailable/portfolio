@@ -2,7 +2,7 @@ import type { Team } from '@/types/team'
 import type { GalleryPhoto, Event } from '@/types/event'
 
 export const STATS = [
-  { value: 10, suffix: '+', label: 'Years of Fire', highlight: false },
+  { value: 27, suffix: '+', label: 'Years of Fire', highlight: false },
   { value: 150, suffix: '+', label: 'Active Members', highlight: false },
   { value: 3, suffix: '×', label: 'MEPCO Champions', highlight: true },
   { value: 2, suffix: '', label: 'Major Events', highlight: false },
