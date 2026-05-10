@@ -257,19 +257,7 @@ export default function TheStage() {
   return (
     <section ref={sectionRef} id="gallery" style={{ padding: 'var(--sp-4xl) 0', background: 'var(--bg)' }}>
       <div ref={contentRef}>
-        {/* Cinematic Chapter Divider */}
-        <div ref={dividerRef} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem', padding: '0 2rem 6rem', opacity: 0.9, position: 'relative', zIndex: 10 }}>
-          <div ref={lineLeftRef} style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, var(--gold) 100%)', opacity: 0.5 }} />
-          
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-            <div ref={iconRef} style={{ width: '14px', height: '14px', border: '1.5px solid var(--gold)', transform: 'rotate(45deg)', opacity: 0.9, boxShadow: '0 0 10px rgba(201,168,76,0.3)' }} />
-            <span ref={labelRef} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--gold)', letterSpacing: '0.5em', whiteSpace: 'nowrap' }}>
-              THE ARCHIVE
-            </span>
-          </div>
 
-          <div ref={lineRightRef} style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--gold) 0%, transparent 100%)', opacity: 0.5 }} />
-        </div>
 
         <div ref={headerRef}>
 

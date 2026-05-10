@@ -265,13 +265,6 @@ export default function Battlegrounds() {
         
         {/* ── Header ── */}
         <div style={{ textAlign: 'center', marginBottom: '8rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-            <div style={{ width: '40px', height: '1px', background: 'var(--crimson)' }} />
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--crimson)', letterSpacing: '0.4em', margin: 0 }}>
-              06 // BATTLEGROUNDS
-            </p>
-            <div style={{ width: '40px', height: '1px', background: 'var(--crimson)' }} />
-          </div>
           
           <h2 style={{
             fontFamily: 'var(--font-display)', fontSize: 'clamp(36px, 6vw, 96px)',
@@ -311,7 +304,7 @@ export default function Battlegrounds() {
           </div>
 
           <div style={{
-            marginTop: '-2rem', background: 'var(--bg)', border: '1px solid var(--crimson-border)',
+            marginTop: '1rem', background: 'var(--bg)', border: '1px solid var(--crimson-border)',
             padding: '1.5rem 3rem', display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
             boxShadow: '0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(196, 90, 90, 0.2)', position: 'relative', zIndex: 2
           }}>
