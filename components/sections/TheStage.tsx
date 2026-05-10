@@ -299,6 +299,7 @@ export default function TheStage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
             gridAutoRows: 'clamp(160px, 19vh, 260px)',
+            gridAutoFlow: 'dense',
             gap: 10,
           }}>
             {filtered.map((photo, i) => (
