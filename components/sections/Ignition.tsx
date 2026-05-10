@@ -37,10 +37,24 @@ export default function Ignition() {
           e.preventDefault()
         }
       }
+
+      const unlockScroll = () => {
+        document.body.style.overflow = ''
+        window.removeEventListener('wheel', preventScroll)
+        window.removeEventListener('touchmove', preventScroll)
+        window.removeEventListener('keydown', preventKeys)
+        if (typeof window !== 'undefined' && (window as any).lenis) {
+          (window as any).lenis.start()
+        }
+      }
       
       window.addEventListener('wheel', preventScroll, { passive: false })
       window.addEventListener('touchmove', preventScroll, { passive: false })
       window.addEventListener('keydown', preventKeys, { passive: false })
+
+      // Safety net: always unlock after 6s regardless of animation state
+      // Prevents permanent scroll lock on slow devices or if GSAP stalls
+      const safetyTimer = setTimeout(unlockScroll, 6000)
 
       // Also try to stop lenis if it's already there
       if (typeof window !== 'undefined' && (window as any).lenis) {
@@ -52,14 +66,8 @@ export default function Ignition() {
       const tl = gsap.timeline({ 
         delay: 0.1,
         onComplete: () => {
-          // Unlock scroll when animation finishes
-          document.body.style.overflow = ''
-          window.removeEventListener('wheel', preventScroll)
-          window.removeEventListener('touchmove', preventScroll)
-          window.removeEventListener('keydown', preventKeys)
-          if (typeof window !== 'undefined' && (window as any).lenis) {
-            (window as any).lenis.start()
-          }
+          clearTimeout(safetyTimer)
+          unlockScroll()
         }
       })
 
