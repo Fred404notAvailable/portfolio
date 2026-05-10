@@ -110,12 +110,12 @@ export const GALLERY: GalleryPhoto[] = [
   { id: 'mirth-2',  src: '/images/gallery/mirth-2.jpg',  alt: 'MIRTH group dance on stage',        event: 'mirth', size: 'normal' },
   { id: 'mirth-3',  src: '/images/gallery/mirth-3.jpg',  alt: 'MIRTH drama performance',           event: 'mirth', size: 'wide'   },
   { id: 'mirth-4',  src: '/images/gallery/mirth-4.jpg',  alt: 'MIRTH music concert',               event: 'mirth', size: 'normal' },
-  { id: 'mirth-5',  src: 'https://picsum.photos/seed/mirth5/800/600',  alt: 'MIRTH backstage moments',   event: 'mirth', size: 'wide'   },
-  { id: 'mirth-6',  src: 'https://picsum.photos/seed/mirth6/800/600',  alt: 'MIRTH award ceremony',      event: 'mirth', size: 'normal' },
-  { id: 'mirth-7',  src: 'https://picsum.photos/seed/mirth7/800/600',  alt: 'MIRTH opening act',         event: 'mirth', size: 'normal' },
-  { id: 'mirth-8',  src: 'https://picsum.photos/seed/mirth8/800/600',  alt: 'MIRTH crowd cheering',      event: 'mirth', size: 'wide'   },
-  { id: 'mirth-9',  src: 'https://picsum.photos/seed/mirth9/800/600',  alt: 'MIRTH closing ceremony',    event: 'mirth', size: 'normal' },
-  { id: 'mirth-10', src: 'https://picsum.photos/seed/mirth10/800/600', alt: 'MIRTH best moments',        event: 'mirth', size: 'normal' },
+  { id: 'mirth-5',  src: '/images/gallery/mirth-5.jpg',  alt: 'MIRTH backstage moments',   event: 'mirth', size: 'wide'   },
+  { id: 'mirth-6',  src: '/images/gallery/mirth-6.jpg',  alt: 'MIRTH award ceremony',      event: 'mirth', size: 'normal' },
+  { id: 'mirth-7',  src: '/images/gallery/mirth-7.jpg',  alt: 'MIRTH opening act',         event: 'mirth', size: 'normal' },
+  { id: 'mirth-8',  src: '/images/gallery/mirth-8.jpg',  alt: 'MIRTH crowd cheering',      event: 'mirth', size: 'wide'   },
+  { id: 'mirth-9',  src: '/images/gallery/mirth-9.jpg',  alt: 'MIRTH closing ceremony',    event: 'mirth', size: 'normal' },
+  { id: 'mirth-10', src: '/images/gallery/mirth-10.jpg', alt: 'MIRTH best moments',        event: 'mirth', size: 'normal' },
 
   // ── SPARKZ (10) ─────────────────────────────────────────────────────────────
   { id: 'sparkz-1',  src: '/images/gallery/sparkz-1.jpg',  alt: 'Sparkz inter-college stage',       event: 'sparkz', size: 'wide'   },
