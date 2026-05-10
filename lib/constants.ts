@@ -147,7 +147,7 @@ export const EVENTS: Event[] = [
 ]
 
 export const SOCIALS = [
-  { label: 'Instagram', url: 'https://instagram.com/pyros_official_kare', icon: 'instagram' },
-  { label: 'YouTube', url: '#', icon: 'youtube' },
-  { label: 'Discord', url: '#', icon: 'discord' },
+  { label: 'Instagram', url: 'https://www.instagram.com/pyros_official_kare?igsh=MXh1aHVxcnFuampweA==', icon: 'instagram' },
+  { label: 'YouTube', url: 'https://youtube.com/@fineartsclubkare5944?si=4vl1kOgoZ5YhOMOf', icon: 'youtube' },
+  { label: 'Discord', url: 'https://discord.gg/XVFZKB6aNr', icon: 'discord' },
 ]

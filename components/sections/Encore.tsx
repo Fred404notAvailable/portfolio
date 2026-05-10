@@ -197,7 +197,9 @@ export default function Encore() {
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: '3rem', alignItems: 'center' }}>
           {/* Instagram */}
           <a
-            href="#"
+            href="https://www.instagram.com/pyros_official_kare?igsh=MXh1aHVxcnFuampweA=="
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: 'var(--muted)', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--gold)';
@@ -220,7 +222,9 @@ export default function Encore() {
 
           {/* YouTube */}
           <a
-            href="#"
+            href="https://youtube.com/@fineartsclubkare5944?si=4vl1kOgoZ5YhOMOf"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: 'var(--muted)', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--gold)';
@@ -242,7 +246,9 @@ export default function Encore() {
 
           {/* Discord */}
           <a
-            href="#"
+            href="https://discord.gg/XVFZKB6aNr"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: 'var(--muted)', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--gold)';
