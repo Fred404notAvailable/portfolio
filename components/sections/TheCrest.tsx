@@ -7,7 +7,7 @@ const WHY_CARDS = [
   { number:'01', label:'CREATIVITY',   title:'Over Two Decades of Excellence', body:'PYROS has nurtured 150+ students across 8 art disciplines since 1999 at KARE.' },
   { number:'02', label:'COMPETITION',  title:'3× MEPCO Overall Champions', body:'We have dominated inter-college competitions across NIT, VIT, IIT, SRM, and more.' },
   { number:'03', label:'COMMUNITY',    title:'150+ Members, One Family', body:'Every team — from Music to Fashion — competes as one unified force on every stage.' },
-  { number:'04', label:'PERFORMANCE',  title:'Two Flagship Events Per Year', body:'MIRTH (internal) and Sparkz (inter-college) — two massive stages, two chances to shine.' },
+  { number:'04', label:'PERFORMANCE',  title:'5+ Major Events Per Year', body:'MIRTH, Sparkz, Halloween Special, and more — multiple massive stages, endless chances to shine.' },
   { number:'05', label:'OPPORTUNITY',  title:'Perform at Any Stage', body:'Drama to Dance, Gaming to Literature — PYROS opens doors to every creative discipline.' },
   { number:'06', label:'LEGACY',       title:'25+ Years of Trophies', body:'Our shelves are heavy with the absolute highest honors from prestigious cultural festivals across the nation.' },
   { number:'07', label:'TALENT',       title:'Elite Grooming', body:'We take raw, unpolished potential and meticulously train our students to be confident, national-level performers.' },
