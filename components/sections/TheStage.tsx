@@ -27,12 +27,24 @@ const BENTO_CELLS: { colSpan: number; rowSpan: number }[] = [
   { colSpan: 4, rowSpan: 1 },   //  3 — short
   { colSpan: 4, rowSpan: 2 },   //  4 — tall center
   { colSpan: 4, rowSpan: 1 },   //  5 — short
-  { colSpan: 4, rowSpan: 1 },   //  6 — short (fills under 3)
-  { colSpan: 4, rowSpan: 1 },   //  7 — short (fills under 5 bottom)
-  { colSpan: 5, rowSpan: 2 },   //  8 — big tall-left (new group)
+  { colSpan: 4, rowSpan: 1 },   //  6 — short
+  { colSpan: 4, rowSpan: 1 },   //  7 — short
+  { colSpan: 5, rowSpan: 2 },   //  8 — big tall-left
   { colSpan: 7, rowSpan: 1 },   //  9 — wide short-right
   { colSpan: 3, rowSpan: 1 },   // 10 — narrow
   { colSpan: 4, rowSpan: 1 },   // 11 — medium
+  { colSpan: 6, rowSpan: 2 },   // 12 — tall-wide left
+  { colSpan: 6, rowSpan: 1 },   // 13 — half-width top
+  { colSpan: 3, rowSpan: 1 },   // 14 — small
+  { colSpan: 3, rowSpan: 1 },   // 15 — small
+  { colSpan: 4, rowSpan: 1 },   // 16 — medium
+  { colSpan: 8, rowSpan: 2 },   // 17 — wide tall
+  { colSpan: 4, rowSpan: 1 },   // 18 — medium
+  { colSpan: 4, rowSpan: 1 },   // 19 — medium
+  { colSpan: 5, rowSpan: 1 },   // 20 — medium-wide
+  { colSpan: 7, rowSpan: 2 },   // 21 — tall-wide
+  { colSpan: 5, rowSpan: 1 },   // 22 — medium-wide
+  { colSpan: 5, rowSpan: 1 },   // 23 — medium-wide
 ]
 
 // ── Single Card ───────────────────────────────────────────────────────────────

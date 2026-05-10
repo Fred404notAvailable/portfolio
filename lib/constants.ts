@@ -117,6 +117,19 @@ export const GALLERY: GalleryPhoto[] = [
   { id: 'halloween-2', src: '/images/gallery/halloween-2.jpg', alt: 'Halloween night atmosphere', event: 'halloween', size: 'wide' },
   { id: 'halloween-3', src: '/images/gallery/halloween-3.jpg', alt: 'Halloween dramatic setup', event: 'halloween', size: 'tall' },
   { id: 'halloween-4', src: '/images/gallery/halloween-4.jpg', alt: 'Halloween costume showcase', event: 'halloween', size: 'normal' },
+  // Extended gallery — placeholder images (replace src with real photos when ready)
+  { id: 'mirth-5', src: 'https://picsum.photos/seed/mirth5/800/600', alt: 'MIRTH backstage moments', event: 'mirth', size: 'wide' },
+  { id: 'mirth-6', src: 'https://picsum.photos/seed/mirth6/600/900', alt: 'MIRTH award ceremony', event: 'mirth', size: 'tall' },
+  { id: 'mirth-7', src: 'https://picsum.photos/seed/mirth7/800/600', alt: 'MIRTH opening act', event: 'mirth', size: 'normal' },
+  { id: 'mirth-8', src: 'https://picsum.photos/seed/mirth8/800/600', alt: 'MIRTH crowd cheering', event: 'mirth', size: 'normal' },
+  { id: 'sparkz-5', src: 'https://picsum.photos/seed/sparkz5/800/600', alt: 'Sparkz fashion showcase', event: 'sparkz', size: 'normal' },
+  { id: 'sparkz-6', src: 'https://picsum.photos/seed/sparkz6/600/900', alt: 'Sparkz cultural display', event: 'sparkz', size: 'tall' },
+  { id: 'sparkz-7', src: 'https://picsum.photos/seed/sparkz7/1200/600', alt: 'Sparkz grand finale', event: 'sparkz', size: 'wide' },
+  { id: 'sparkz-8', src: 'https://picsum.photos/seed/sparkz8/800/600', alt: 'Sparkz trophy presentation', event: 'sparkz', size: 'normal' },
+  { id: 'halloween-5', src: 'https://picsum.photos/seed/hall5/800/600', alt: 'Halloween face-off contest', event: 'halloween', size: 'normal' },
+  { id: 'halloween-6', src: 'https://picsum.photos/seed/hall6/1200/600', alt: 'Halloween haunted stage', event: 'halloween', size: 'wide' },
+  { id: 'halloween-7', src: 'https://picsum.photos/seed/hall7/600/900', alt: 'Halloween winners podium', event: 'halloween', size: 'tall' },
+  { id: 'halloween-8', src: 'https://picsum.photos/seed/hall8/800/600', alt: 'Halloween group photo', event: 'halloween', size: 'normal' },
 ]
 
 export const EVENTS: Event[] = [
