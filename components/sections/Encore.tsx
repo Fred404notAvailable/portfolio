@@ -105,7 +105,7 @@ export default function Encore() {
           marginBottom: '3rem',
           textTransform: 'uppercase'
         }}>
-          BECOME PART OF A DECADE OF FIRE
+          BECOME PART OF A 27-YEAR INFERNO
         </p>
 
         {/* Magnetic Sweep CTA Button */}
