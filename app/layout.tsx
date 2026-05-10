@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/app/globals.css'
 import { Bebas_Neue, Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         {children}
         <div id="lightbox-portal" />
+        <SpeedInsights />
       </body>
     </html>
   )
