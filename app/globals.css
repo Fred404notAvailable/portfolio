@@ -753,3 +753,70 @@ img {
     height: clamp(180px, 40vw, 260px) !important;
   }
 }
+
+/* ── 500px and below (Mobile Phones) ── */
+@media (max-width: 500px) {
+  /* Container: Edge-to-edge on mobile */
+  .container {
+    padding: 0 1rem !important;
+  }
+
+  /* Ignition / Hero */
+  .hero-line-0, .hero-line-1, .hero-line-2 {
+    gap: clamp(8px, 3vw, 16px) !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Drop the explore button below the text on mobile instead of absolutely positioning it off-screen */
+  .line-2-wrapper {
+    flex-direction: column !important;
+  }
+  
+  .hero-line-1 > .line-2-wrapper > div:last-child {
+    position: static !important;
+    margin-left: 0 !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* Reduce GSAP translation effect visually by keeping it centered */
+  .line-2-wrapper {
+    transform: none !important; 
+    /* We still let GSAP animate x, but we use margin auto or flex alignments, or simply let the -8vw happen (which is tiny on mobile) */
+  }
+
+  /* Battlegrounds */
+  .battle-numeral {
+    font-size: 40vw !important; /* Scale down the massive '3' */
+  }
+  
+  .battle-numeral-container > div:last-child {
+    padding: 1rem 1.5rem !important; /* Scale down the text box */
+  }
+  
+  .battle-left-box {
+    display: none !important; /* Hide tactical overlay completely on mobile */
+  }
+
+  .bottom-counter > div {
+    padding: 1.5rem 2rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* The Crest / Why Cards */
+  .why-card {
+    width: 85vw !important;
+    padding: 1.25rem !important;
+  }
+  
+  #why-pyros-text {
+    left: 2rem !important;
+    width: 60vw !important;
+  }
+  
+  /* General Typography Scale */
+  .stat-bg-text {
+    font-size: 30vw !important;
+  }
+}
