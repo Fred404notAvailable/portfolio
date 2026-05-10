@@ -110,7 +110,9 @@ export default function Encore() {
 
         {/* Magnetic Sweep CTA Button */}
         <a
-          href="#"
+          href="https://forms.gle/NEm3rwF7KVGEdmyt9"
+          target="_blank"
+          rel="noopener noreferrer"
           ref={ctaRef}
           onMouseMove={(e) => {
             if (!ctaRef.current) return
