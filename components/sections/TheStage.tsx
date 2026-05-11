@@ -4,63 +4,62 @@ import { GALLERY } from '@/lib/constants'
 import Lightbox from '@/components/ui/Lightbox'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 import type { GalleryPhoto } from '@/types/event'
+import { onImgError } from '@/lib/imgFallback'
 
 type Filter = 'all' | 'mirth' | 'sparkz' | 'halloween'
 const FILTERS: { label: string; value: Filter }[] = [
   { label: 'ALL', value: 'all' }, { label: 'MIRTH', value: 'mirth' },
   { label: 'SPARKZ', value: 'sparkz' }, { label: 'HALLOWEEN', value: 'halloween' },
 ]
-const EVENT_META: Record<string, { tag: string; desc: string }> = {
-  mirth: { tag: 'INTERNAL', desc: 'Annual Cultural Fest · KARE' },
-  sparkz: { tag: 'INTER-COLLEGE', desc: 'Flagship Open Cultural' },
-  halloween: { tag: 'SPECIAL', desc: 'Halloween Night Special' },
-}
 
 // ── True CSS Bento Grid — each cell has a column span and row span ─────────────
 // Grid has 12 columns. Base row unit = 220px.
-// colSpan drives width, rowSpan drives height — some cards are 2× taller.
-// Pattern repeats every 12 photos so any number of photos works.
+// Slots 0-9 (used when Sparkz filter is active, 10 cards) are kept varied:
+//   only 2 truly wide slots (idx 0 and 7) so the filtered view isn't a stack of panoramas.
 const BENTO_CELLS: { colSpan: number; rowSpan: number }[] = [
-  // Row 1-2 block: wide landscape left + two portrait stacked right
-  { colSpan: 8, rowSpan: 2 },   //  0 — wide tall   → 8 cols × 2 rows
-  { colSpan: 4, rowSpan: 1 },   //  1 — portrait top → 4 cols × 1 row  (8+4=12)
-  { colSpan: 4, rowSpan: 1 },   //  2 — portrait bot → 4 cols × 1 row  (8+4=12)
+  // ── Slots 0-9  (Sparkz filtered view — 10 cards) ──────────────────────────
+  // Row 1-2: wide tall left + two portrait stacked right
+  { colSpan: 8, rowSpan: 2 },   //  0 — WIDE   8×2  → 8+4=12
+  { colSpan: 4, rowSpan: 1 },   //  1 — normal  4×1
+  { colSpan: 4, rowSpan: 1 },   //  2 — normal  4×1
 
-  // Row 3: three equal landscape
-  { colSpan: 4, rowSpan: 1 },   //  3               → 4+4+4=12
+  // Row 3: three equal thirds
+  { colSpan: 4, rowSpan: 1 },   //  3           4×1  → 4+4+4=12
   { colSpan: 4, rowSpan: 1 },   //  4
   { colSpan: 4, rowSpan: 1 },   //  5
 
-  // Row 4-5 block: two portrait stacked left + wide landscape right
-  { colSpan: 4, rowSpan: 1 },   //  6 — portrait top → 4+8=12
-  { colSpan: 8, rowSpan: 2 },   //  7 — wide tall   → 8 cols × 2 rows
-  { colSpan: 4, rowSpan: 1 },   //  8 — portrait bot → 4+8=12
+  // Row 4-5: portrait left + wide tall right
+  { colSpan: 4, rowSpan: 1 },   //  6 — normal  4×1  → 4+8=12
+  { colSpan: 8, rowSpan: 2 },   //  7 — WIDE   8×2
+  { colSpan: 4, rowSpan: 1 },   //  8 — normal  4×1
 
-  // Row 6: wide + narrow landscape
-  { colSpan: 7, rowSpan: 1 },   //  9               → 7+5=12
-  { colSpan: 5, rowSpan: 1 },   // 10
+  // Row 6: half + half (no wide here — 2 wides total for Sparkz)
+  { colSpan: 6, rowSpan: 1 },   //  9           6×1  → 6+6=12
 
-  // Row 7-8 block: portrait left + two landscape stacked right
-  { colSpan: 5, rowSpan: 2 },   // 11 — portrait    → 5+7=12
-  { colSpan: 7, rowSpan: 1 },   // 12 — landscape
-  { colSpan: 7, rowSpan: 1 },   // 13               → 5+7=12
+  // ── Slots 10-23  (extra cards / ALL view continuation) ────────────────────
+  { colSpan: 6, rowSpan: 1 },   // 10           6×1
+
+  // Row 7-8: portrait left + two landscape stacked right
+  { colSpan: 5, rowSpan: 2 },   // 11 — tall    5×2  → 5+7=12
+  { colSpan: 7, rowSpan: 1 },   // 12           7×1
+  { colSpan: 7, rowSpan: 1 },   // 13           7×1
 
   // Row 9: halves
-  { colSpan: 6, rowSpan: 1 },   // 14               → 6+6=12
+  { colSpan: 6, rowSpan: 1 },   // 14           6×1  → 6+6=12
   { colSpan: 6, rowSpan: 1 },   // 15
 
-  // Row 10-11 block: wide landscape top + portrait right
-  { colSpan: 7, rowSpan: 1 },   // 16               → 7+5=12
-  { colSpan: 5, rowSpan: 2 },   // 17 — portrait
-  { colSpan: 7, rowSpan: 1 },   // 18               → 7+5=12
+  // Row 10-11: wide + portrait right
+  { colSpan: 7, rowSpan: 1 },   // 16           7×1  → 7+5=12
+  { colSpan: 5, rowSpan: 2 },   // 17 — tall    5×2
+  { colSpan: 7, rowSpan: 1 },   // 18           7×1
 
   // Row 12: three thirds
-  { colSpan: 4, rowSpan: 1 },   // 19               → 4+4+4=12
+  { colSpan: 4, rowSpan: 1 },   // 19           4×1  → 4+4+4=12
   { colSpan: 4, rowSpan: 1 },   // 20
   { colSpan: 4, rowSpan: 1 },   // 21
 
   // Row 13: wide + narrow
-  { colSpan: 8, rowSpan: 1 },   // 22               → 8+4=12
+  { colSpan: 8, rowSpan: 1 },   // 22           8×1  → 8+4=12
   { colSpan: 4, rowSpan: 1 },   // 23
 ]
 
@@ -74,11 +73,11 @@ function GalleryCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
-  const infoRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
   const [hovered, setHovered] = useState(false)
-  const meta = EVENT_META[photo.event] ?? { tag: photo.event.toUpperCase(), desc: '' }
   const cell = BENTO_CELLS[idx % BENTO_CELLS.length]
+  // photo.size drives rowSpan: 'tall' → double-height, otherwise use BENTO_CELLS rowSpan
+  const rowSpan = photo.size === 'tall' ? 2 : cell.rowSpan
 
   // Scroll-triggered fade-in per card
   useEffect(() => {
@@ -98,21 +97,16 @@ function GalleryCard({
 
   const enter = useCallback(() => {
     setHovered(true)
-    // Card itself pops out — scale up + elevate over neighbors
     gsap.to(cardRef.current, { scale: 1.04, zIndex: 10, duration: 0.45, ease: 'power2.out', overwrite: true })
-    // Image de-saturates and zooms slightly within the card
     gsap.to(imgRef.current, { filter: 'grayscale(0%) brightness(0.80)', scale: 1.06, duration: 0.5 })
-    gsap.to(infoRef.current, { y: 0, opacity: 1, duration: 0.4, delay: 0.1 })
     gsap.to(frameRef.current, { borderColor: 'var(--gold)', duration: 0.28 })
   }, [])
 
   const leave = useCallback(() => {
     setHovered(false)
-    // Shrink back, reset z-index after transition
     gsap.to(cardRef.current, { scale: 1, zIndex: 1, duration: 0.4, ease: 'power2.inOut', overwrite: true })
     gsap.to(imgRef.current, { filter: 'grayscale(100%) brightness(0.6)', scale: 1, duration: 0.45 })
-    gsap.to(infoRef.current, { y: 14, opacity: 0, duration: 0.3 })
-    gsap.to(frameRef.current, { borderColor: 'transparent', duration: 0.28 })
+    gsap.to(frameRef.current, { borderColor: 'rgba(201,168,76,0.25)', duration: 0.28 })
   }, [])
 
   return (
@@ -124,12 +118,12 @@ function GalleryCard({
       onClick={onClick}
       style={{
         gridColumn: `span ${cell.colSpan}`,
-        gridRow: `span ${cell.rowSpan}`,
+        gridRow: `span ${rowSpan}`,
         position: 'relative', overflow: 'hidden',
         borderRadius: 14,
         background: 'var(--bg-card)',
         cursor: 'pointer',
-        minHeight: cell.rowSpan === 2 ? 'clamp(320px, 38vh, 520px)' : 'clamp(160px, 19vh, 260px)',
+        minHeight: rowSpan === 2 ? 'clamp(320px, 38vh, 520px)' : 'clamp(160px, 19vh, 260px)',
         // transform-origin center so scale-up expands outward symmetrically
         transformOrigin: 'center center',
         willChange: 'transform',
@@ -141,6 +135,7 @@ function GalleryCard({
         ref={imgRef}
         src={photo.src}
         alt={photo.alt}
+        onError={onImgError}
         style={{
           position: 'absolute', inset: 0,
           width: '100%', height: '100%',
@@ -153,62 +148,27 @@ function GalleryCard({
       {/* Gradient overlay */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.15) 55%, transparent 100%)',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)',
       }} />
 
-      {/* Gold border frame on hover */}
+      {/* Gold border — always visible, brightens on hover */}
       <div ref={frameRef} style={{
         position: 'absolute', inset: 0, zIndex: 4,
-        border: '2px solid transparent', borderRadius: 14, pointerEvents: 'none',
+        border: '1.5px solid rgba(201,168,76,0.25)', borderRadius: 14, pointerEvents: 'none',
+        transition: 'border-color 0.28s ease',
       }} />
 
-      {/* Top-right: tag + hex icon */}
-      <div style={{ position: 'absolute', top: 13, right: 14, display: 'flex', alignItems: 'center', gap: 6, zIndex: 3 }}>
-        <span style={{
-          fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.28em',
-          color: hovered ? 'var(--gold)' : 'var(--muted)',
-          textTransform: 'uppercase', transition: 'color 0.3s', whiteSpace: 'nowrap',
-        }}>{meta.tag}</span>
-        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-          <path d="M14 2L24.39 8V20L14 26L3.61 20V8L14 2Z"
-            stroke={hovered ? 'var(--gold)' : 'var(--border)'} strokeWidth="1.2"
-            fill={hovered ? 'rgba(201,168,76,0.12)' : 'transparent'} style={{ transition: 'all 0.3s' }} />
-          <path d="M10 14h8M15 11l3 3-3 3" stroke={hovered ? 'var(--gold)' : 'var(--sub)'}
-            strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.3s' }} />
-        </svg>
-      </div>
-
-      {/* Bottom content */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 16px', zIndex: 3 }}>
-        <h3 style={{
+      {/* Bottom: event name — always visible, lights up on hover */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 18px', zIndex: 3 }}>
+        <p style={{
           fontFamily: 'var(--font-display)',
-          fontSize: hovered ? 22 : 16,
-          letterSpacing: '0.05em',
-          color: hovered ? 'var(--gold-light)' : 'var(--text)',
-          lineHeight: 1.15, marginBottom: 5,
-          transition: 'font-size 0.35s ease, color 0.3s',
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        }}>{photo.alt.toUpperCase()}</h3>
-
-        {/* Slide-up info — hidden until hover */}
-        <div ref={infoRef} style={{ opacity: 0, transform: 'translateY(14px)' }}>
-          <p style={{
-            fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em',
-            color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 8,
-          }}>{meta.desc}</p>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {['Photography', 'Performance', 'PYROS'].map(t => (
-              <span key={t} style={{
-                fontFamily: 'var(--font-mono)', fontSize: 9,
-                color: 'var(--muted)', border: '1px solid var(--border)',
-                padding: '2px 7px', borderRadius: 'var(--r-pill)',
-              }}>{t}</span>
-            ))}
-          </div>
-        </div>
+          fontSize: 'clamp(13px, 1.4vw, 18px)',
+          letterSpacing: '0.18em',
+          color: hovered ? 'var(--gold)' : 'rgba(255,255,255,0.55)',
+          textTransform: 'uppercase',
+          margin: 0,
+          transition: 'color 0.3s ease',
+        }}>{photo.event === 'halloween' ? 'HALLOWEEN' : photo.event.toUpperCase()}</p>
       </div>
     </div>
   )

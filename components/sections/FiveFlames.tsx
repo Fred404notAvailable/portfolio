@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { TEAMS } from '@/lib/constants'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
+import { probeBgImage } from '@/lib/imgFallback'
 
 export default function FiveFlames() {
   const sectionRef  = useRef<HTMLElement>(null)
@@ -185,6 +186,7 @@ export default function FiveFlames() {
               {/* Full-bleed photo */}
               <div
                 className="panel-img"
+                ref={(el) => { if (el) probeBgImage(el, team.photo) }}
                 style={{
                   position: 'absolute',
                   inset: 0,

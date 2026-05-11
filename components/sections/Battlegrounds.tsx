@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
+import { probeBgImage } from '@/lib/imgFallback'
 
 // Using existing gallery images as battle photos
 const COLLEGES = [
@@ -342,15 +343,17 @@ export default function Battlegrounds() {
                 }}
               >
                 {/* Full-bleed photo */}
-                <div style={{
-                  position: 'absolute', inset: 0, zIndex: 0,
-                  backgroundImage: `url(${college.photo})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'grayscale(40%) brightness(0.6) sepia(15%)',
-                  transform: 'scale(1.05)',
-                  transition: 'transform 0.8s ease, filter 0.8s ease',
-                }} className="card-photo" />
+                <div
+                  ref={(el) => { if (el) probeBgImage(el, college.photo) }}
+                  style={{
+                    position: 'absolute', inset: 0, zIndex: 0,
+                    backgroundImage: `url(${college.photo})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'grayscale(40%) brightness(0.6) sepia(15%)',
+                    transform: 'scale(1.05)',
+                    transition: 'transform 0.8s ease, filter 0.8s ease',
+                  }} className="card-photo" />
 
                 {/* Gradient — transparent top, dark bottom for text legibility */}
                 <div style={{

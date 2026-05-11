@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import Image from 'next/image'
+import { onImgError } from '@/lib/imgFallback'
 
 interface LightboxProps {
   src: string
@@ -61,13 +61,11 @@ export default function Lightbox({ src, alt, onClose }: LightboxProps) {
           animation: 'fadeUp 0.35s ease forwards',
         }}
       >
-        <Image
+        <img
           src={src}
           alt={alt}
-          width={1200}
-          height={800}
-          style={{ objectFit: 'contain', maxHeight: '85vh', width: 'auto', height: 'auto' }}
-          priority
+          onError={onImgError}
+          style={{ objectFit: 'contain', maxHeight: '85vh', maxWidth: '90vw', width: 'auto', height: 'auto', display: 'block' }}
         />
       </div>
 
