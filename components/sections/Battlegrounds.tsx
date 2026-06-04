@@ -3,17 +3,17 @@ import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 import { probeBgImage } from '@/lib/imgFallback'
 
-// Using existing gallery images as battle photos
+// Dedicated images for each college
 const COLLEGES = [
-  { name: 'NIT Trichy',      photo: '/images/gallery/sparkz-1.jpg' },
-  { name: 'VIT Vellore',     photo: '/images/gallery/mirth-1.jpg' },
-  { name: 'IIT Madras',      photo: '/images/gallery/halloween-1.jpg' },
-  { name: 'SRM Chennai',     photo: '/images/gallery/sparkz-2.jpg' },
-  { name: 'KCT Coimbatore',  photo: '/images/gallery/mirth-2.jpg' },
-  { name: 'MEPCO Schlenk',   photo: '/images/gallery/halloween-2.jpg' },
-  { name: 'PSG Tech',        photo: '/images/gallery/sparkz-3.jpg' },
-  { name: 'CIT Chennai',     photo: '/images/gallery/mirth-3.jpg' },
-  { name: 'SSN College',     photo: '/images/gallery/halloween-3.jpg' },
+  { name: 'NIT Trichy',      photo: '/images/colleges/nit-trichy.jpg' },
+  { name: 'VIT Vellore',     photo: '/images/colleges/vit-vellore.jpg' },
+  { name: 'IIT Madras',      photo: '/images/colleges/iit-madras.jpg' },
+  { name: 'SRM Chennai',     photo: '/images/colleges/srm-chennai.jpg' },
+  { name: 'KCT Coimbatore',  photo: '/images/colleges/kct-coimbatore.jpg' },
+  { name: 'MEPCO Schlenk',   photo: '/images/colleges/mepco-schlenk.jpg' },
+  { name: 'PSG Tech',        photo: '/images/colleges/psg-tech.jpg' },
+  { name: 'CIT Chennai',     photo: '/images/colleges/cit-chennai.jpg' },
+  { name: 'SSN College',     photo: '/images/colleges/ssn-college.jpg' },
 ]
 
 // Manual split-text animation helper for words
