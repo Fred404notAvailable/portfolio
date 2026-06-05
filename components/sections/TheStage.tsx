@@ -79,20 +79,32 @@ function GalleryCard({
   // photo.size drives rowSpan: 'tall' → double-height, otherwise use BENTO_CELLS rowSpan
   const rowSpan = photo.size === 'tall' ? 2 : cell.rowSpan
 
-  // Scroll-triggered fade-in per card
+  // Reliable fade-in using IntersectionObserver instead of ScrollTrigger
+  // This avoids intermittent loading issues when parent containers animate or pin.
   useEffect(() => {
     if (!cardRef.current) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(cardRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-          delay: (idx % 4) * 0.08,
-          scrollTrigger: { trigger: cardRef.current, start: 'top 90%' },
+    
+    // Initial hidden state
+    gsap.set(cardRef.current, { opacity: 0, y: 30 })
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.to(cardRef.current, {
+            opacity: 1, 
+            y: 0, 
+            duration: 0.7, 
+            ease: 'power3.out',
+            delay: (idx % 4) * 0.08,
+            overwrite: 'auto'
+          })
+          observer.unobserve(entry.target)
         }
-      )
-    })
-    return () => ctx.revert()
+      })
+    }, { rootMargin: '0px 0px -5% 0px' })
+
+    observer.observe(cardRef.current)
+    return () => observer.disconnect()
   }, [idx])
 
   const enter = useCallback(() => {
