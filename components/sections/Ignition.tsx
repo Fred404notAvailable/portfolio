@@ -243,7 +243,7 @@ export default function Ignition() {
         fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.22em',
         color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.8,
       }}>
-        DRAMA &amp; DANCE<br />PERFORMANCE
+        VARIETY &amp; DANCE<br />PERFORMANCE
       </div>
 
       {/* Bottom left */}

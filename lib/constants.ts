@@ -40,14 +40,14 @@ export const TEAMS: Team[] = [
     photo: '/images/teams/gaming.jpeg',
   },
   {
-    id: 'drama',
-    name: 'DRAMA',
+    id: 'variety',
+    name: 'VARIETY',
     icon: '◈',
     category: 'Theatre · Stage Productions · Verity',
     description:
-      'Verity — the drama wing of PYROS — transforms words into worlds. From one-act plays to full-scale theatrical productions, we command the stage with intensity and craft.',
+      'Verity — the variety wing of PYROS — transforms words into worlds. From one-act plays to full-scale theatrical productions, we command the stage with intensity and craft.',
     activities: ['Theatre', 'One-Act Plays', 'Improvisation', 'Scriptwriting'],
-    photo: '/images/teams/drama.jpeg',
+    photo: '/images/teams/variety.jpeg',
   },
   {
     id: 'dance',
@@ -108,7 +108,7 @@ export const GALLERY: GalleryPhoto[] = [
   // ── MIRTH (10) ──────────────────────────────────────────────────────────────
   { id: 'mirth-1', src: '/images/gallery/mirth-1.jpg', alt: 'MIRTH cultural fest performance', event: 'mirth', size: 'tall' },
   { id: 'mirth-2', src: '/images/gallery/mirth-2.jpg', alt: 'MIRTH group dance on stage', event: 'mirth', size: 'normal' },
-  { id: 'mirth-3', src: '/images/gallery/mirth-3.jpg', alt: 'MIRTH drama performance', event: 'mirth', size: 'wide' },
+  { id: 'mirth-3', src: '/images/gallery/mirth-3.jpg', alt: 'MIRTH variety performance', event: 'mirth', size: 'wide' },
   { id: 'mirth-4', src: '/images/gallery/mirth-4.jpg', alt: 'MIRTH music concert', event: 'mirth', size: 'normal' },
   { id: 'mirth-5', src: '/images/gallery/mirth-5.jpg', alt: 'MIRTH backstage moments', event: 'mirth', size: 'wide' },
   { id: 'mirth-6', src: '/images/gallery/mirth-6.jpg', alt: 'MIRTH award ceremony', event: 'mirth', size: 'normal' },
@@ -132,7 +132,7 @@ export const GALLERY: GalleryPhoto[] = [
   // ── HALLOWEEN (4) ────────────────────────────────────────────────────────────
   { id: 'halloween-1', src: '/images/gallery/halloween-1.jpg', alt: 'Halloween special event costumes', event: 'halloween', size: 'normal' },
   { id: 'halloween-2', src: '/images/gallery/halloween-2.jpg', alt: 'Halloween night atmosphere', event: 'halloween', size: 'wide' },
-  { id: 'halloween-3', src: '/images/gallery/halloween-3.jpg', alt: 'Halloween dramatic setup', event: 'halloween', size: 'tall' },
+  { id: 'halloween-3', src: '/images/gallery/halloween-3.jpg', alt: 'Halloween variety setup', event: 'halloween', size: 'tall' },
   { id: 'halloween-4', src: '/images/gallery/halloween-4.jpg', alt: 'Halloween costume showcase', event: 'halloween', size: 'normal' },
 ]
 

@@ -125,7 +125,7 @@ export default function Battlegrounds() {
           gsap.to(track, {
             xPercent: -33.33333, // Scroll exactly one third (one original array length)
             ease: 'none',
-            duration: 15,
+            duration: 40,
             repeat: -1,
           })
         }
