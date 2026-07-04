@@ -174,24 +174,30 @@ export default function Ignition() {
 
 
       // Parallax mouse movement — use quickTo so no new tween is created per pixel
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      
       const section = sectionRef.current
-      const moveParticlesX = gsap.quickTo('#particles-hero', 'x', { duration: 1.4, ease: 'power1.out' })
-      const moveParticlesY = gsap.quickTo('#particles-hero', 'y', { duration: 1.4, ease: 'power1.out' })
-      const moveTitleX    = gsap.quickTo(titleRef.current,   'x', { duration: 1.0, ease: 'power1.out' })
-      const moveTitleY    = gsap.quickTo(titleRef.current,   'y', { duration: 1.0, ease: 'power1.out' })
+      let onMouse: (e: MouseEvent) => void
+      
+      if (!prefersReducedMotion) {
+        const moveParticlesX = gsap.quickTo('#particles-hero', 'x', { duration: 1.4, ease: 'power1.out' })
+        const moveParticlesY = gsap.quickTo('#particles-hero', 'y', { duration: 1.4, ease: 'power1.out' })
+        const moveTitleX    = gsap.quickTo(titleRef.current,   'x', { duration: 1.0, ease: 'power1.out' })
+        const moveTitleY    = gsap.quickTo(titleRef.current,   'y', { duration: 1.0, ease: 'power1.out' })
 
-      const onMouse = (e: MouseEvent) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 2
-        const y = (e.clientY / window.innerHeight - 0.5) * 2
-        moveParticlesX(x * 6)
-        moveParticlesY(y * 6)
-        moveTitleX(x * -7)
-        moveTitleY(y * -5)
+        onMouse = (e: MouseEvent) => {
+          const x = (e.clientX / window.innerWidth - 0.5) * 2
+          const y = (e.clientY / window.innerHeight - 0.5) * 2
+          moveParticlesX(x * 6)
+          moveParticlesY(y * 6)
+          moveTitleX(x * -7)
+          moveTitleY(y * -5)
+        }
+        section?.addEventListener('mousemove', onMouse)
       }
-      section?.addEventListener('mousemove', onMouse)
 
       return () => {
-        section?.removeEventListener('mousemove', onMouse)
+        if (onMouse) section?.removeEventListener('mousemove', onMouse)
         split.revert()
       }
     })

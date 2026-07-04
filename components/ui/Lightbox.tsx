@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import { onImgError } from '@/lib/imgFallback'
+import Image from 'next/image'
 
 interface LightboxProps {
   src: string
@@ -53,19 +53,20 @@ export default function Lightbox({ src, alt, onClose }: LightboxProps) {
         onClick={(e) => e.stopPropagation()}
         style={{
           position: 'relative',
-          maxWidth: '90vw',
-          maxHeight: '85vh',
+          width: '90vw',
+          height: '85vh',
           borderRadius: '4px',
           overflow: 'hidden',
           border: '1px solid var(--border)',
           animation: 'fadeUp 0.35s ease forwards',
         }}
       >
-        <img
+        <Image
           src={src}
           alt={alt}
-          onError={onImgError}
-          style={{ objectFit: 'contain', maxHeight: '85vh', maxWidth: '90vw', width: 'auto', height: 'auto', display: 'block' }}
+          fill
+          sizes="90vw"
+          style={{ objectFit: 'contain', display: 'block' }}
         />
       </div>
 
@@ -80,8 +81,8 @@ export default function Lightbox({ src, alt, onClose }: LightboxProps) {
           background: 'transparent',
           border: '1px solid var(--border)',
           color: 'var(--muted)',
-          width: '40px',
-          height: '40px',
+          width: '44px',
+          height: '44px',
           borderRadius: '50%',
           fontSize: '18px',
           display: 'flex',

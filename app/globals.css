@@ -492,6 +492,16 @@ img {
   gap: 0;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .marquee-gold,
+  .marquee-crimson,
+  .marquee-track-gold,
+  .marquee-track-crimson {
+    animation-play-state: paused !important;
+  }
+}
+
+
 /* ── Stat Block ── */
 .stat-block {
   display: flex;

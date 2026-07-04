@@ -26,6 +26,17 @@ export default function Navbar() {
     if (target) target.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // Handle Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
+
   return (
     <>
       <nav
@@ -74,7 +85,10 @@ export default function Navbar() {
                 textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'color 0.25s',
-                padding: '4px 0',
+                padding: '12px 10px',
+                minHeight: '44px',
+                display: 'inline-flex',
+                alignItems: 'center',
               }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--gold)')}
               onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'var(--muted)')}
@@ -103,8 +117,8 @@ export default function Navbar() {
             background: 'none',
             border: '1px solid var(--border)',
             color: 'var(--gold)',
-            width: '36px',
-            height: '36px',
+            width: '44px',
+            height: '44px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -158,11 +172,15 @@ export default function Navbar() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '2.5rem',
+            gap: '1.5rem', // slightly reduced gap since items are taller
           }}
           role="dialog"
           aria-label="Mobile navigation menu"
           aria-modal="true"
+          onClick={(e) => {
+            // Close when clicking the backdrop
+            if (e.target === e.currentTarget) setMenuOpen(false)
+          }}
         >
           {NAV_LINKS.map((link) => (
             <button
@@ -177,6 +195,11 @@ export default function Navbar() {
                 letterSpacing: '0.15em',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
+                padding: '10px 20px',
+                minHeight: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--gold)')}
               onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'var(--muted)')}

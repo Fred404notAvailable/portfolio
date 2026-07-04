@@ -168,40 +168,60 @@ export default function TheCrest() {
             opacity: 0,
           }}
         >
-          {/* Tactical Corner Scanners */}
-          <div style={{ position: 'absolute', top: '4vh', left: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
-          <div style={{ position: 'absolute', top: '4vh', right: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
-          <div style={{ position: 'absolute', bottom: '4vh', left: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
-          <div style={{ position: 'absolute', bottom: '4vh', right: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
+          {/* ── MOBILE HUD CONTAINER ── */}
+          <div className="md:hidden flex justify-between w-full px-4 pt-6" style={{ position: 'absolute', top: 'env(safe-area-inset-top)', left: 0, zIndex: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 2.5vw, 12px)', letterSpacing: '0.1em', color: 'var(--gold)', opacity: 0.6 }}>NET: SECURE</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 2vw, 11px)', letterSpacing: '0.1em', color: 'var(--gold)', opacity: 0.4 }}>UP: 104 MB/S</div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--crimson)' }} />
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 2.5vw, 12px)', letterSpacing: '0.2em', color: 'var(--crimson)', opacity: 0.8 }}>REC</div>
+            </div>
+          </div>
+          <div className="md:hidden flex flex-col items-center justify-end w-full px-4 pb-6" style={{ position: 'absolute', bottom: 'env(safe-area-inset-bottom)', left: 0, zIndex: 10, textAlign: 'center' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 2vw, 11px)', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.4, marginBottom: '8px', overflowWrap: 'break-word', wordBreak: 'break-all', maxWidth: '100%', lineHeight: 1.4 }} title="COORD: 34° 51' 42&quot; N / ENGAGEMENT READY">
+              COORD: 34° 51' 42" N<br />ENGAGEMENT READY
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 2.5vw, 12px)', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.8 }}>
+              <ShieldAlert size={12} /> [ PROTOCOL ACTIVE ]
+            </div>
+          </div>
 
-          {/* Vertical Telemetry Data Lines */}
-          <div style={{ position: 'absolute', top: '15vh', left: '5.5vw', bottom: '15vh', width: '1px', background: 'linear-gradient(to bottom, transparent, var(--gold), transparent)', opacity: 0.15 }} />
-          <div style={{ position: 'absolute', top: '15vh', right: '5.5vw', bottom: '15vh', width: '1px', background: 'linear-gradient(to bottom, transparent, var(--gold), transparent)', opacity: 0.15 }} />
+          {/* Tactical Corner Scanners (Desktop) */}
+          <div className="hidden md:block" style={{ position: 'absolute', top: '4vh', left: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
+          <div className="hidden md:block" style={{ position: 'absolute', top: '4vh', right: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
+          <div className="hidden md:block" style={{ position: 'absolute', bottom: '4vh', left: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
+          <div className="hidden md:block" style={{ position: 'absolute', bottom: '4vh', right: '4vw', color: 'var(--gold)', opacity: 0.3 }}><Scan size={40} /></div>
 
-          {/* Left Vertical Text */}
-          <div style={{ position: 'absolute', left: '3vw', top: '50%', transform: 'translateY(-50%) rotate(180deg)', fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.4em', color: 'var(--gold)', writingMode: 'vertical-rl', opacity: 0.4 }}>
+          {/* Vertical Telemetry Data Lines (Desktop) */}
+          <div className="hidden md:block" style={{ position: 'absolute', top: '15vh', left: '5.5vw', bottom: '15vh', width: '1px', background: 'linear-gradient(to bottom, transparent, var(--gold), transparent)', opacity: 0.15 }} />
+          <div className="hidden md:block" style={{ position: 'absolute', top: '15vh', right: '5.5vw', bottom: '15vh', width: '1px', background: 'linear-gradient(to bottom, transparent, var(--gold), transparent)', opacity: 0.15 }} />
+
+          {/* Left Vertical Text (Desktop) */}
+          <div className="hidden md:block" style={{ position: 'absolute', left: '3vw', top: '50%', transform: 'translateY(-50%) rotate(180deg)', fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vh, 12px)', letterSpacing: '0.4em', color: 'var(--gold)', writingMode: 'vertical-rl', opacity: 0.4 }}>
             SYS.OP.VER // 49.02.11 — ACTIVE
           </div>
 
-          {/* Right Vertical Text */}
-          <div style={{ position: 'absolute', right: '3vw', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.4em', color: 'var(--gold)', writingMode: 'vertical-rl', opacity: 0.4 }}>
+          {/* Right Vertical Text (Desktop) */}
+          <div className="hidden md:block" style={{ position: 'absolute', right: '3vw', top: '50%', transform: 'translateY(-50%)', fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vh, 12px)', letterSpacing: '0.4em', color: 'var(--gold)', writingMode: 'vertical-rl', opacity: 0.4 }}>
             COORD: 34° 51' 42" N / ENGAGEMENT READY
           </div>
 
-          {/* Top Left Status */}
-          <div style={{ position: 'absolute', top: '6vh', left: '8vw', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '8px', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.5 }}>NETWORK: SECURE</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '8px', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.3 }}>UPLINK: 104.2 MB/S</div>
+          {/* Top Left Status (Desktop) */}
+          <div className="hidden md:flex" style={{ position: 'absolute', top: '6vh', left: '8vw', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vw, 12px)', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.5 }}>NETWORK: SECURE</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vw, 12px)', letterSpacing: '0.2em', color: 'var(--gold)', opacity: 0.3 }}>UPLINK: 104.2 MB/S</div>
           </div>
 
-          {/* Top Right Live Indicator */}
-          <div style={{ position: 'absolute', top: '6vh', right: '8vw', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Top Right Live Indicator (Desktop) */}
+          <div className="hidden md:flex" style={{ position: 'absolute', top: '6vh', right: '8vw', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--crimson)' }} />
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', letterSpacing: '0.2em', color: 'var(--crimson)', opacity: 0.8 }}>REC</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(9px, 1vw, 14px)', letterSpacing: '0.2em', color: 'var(--crimson)', opacity: 0.8 }}>REC</div>
           </div>
 
-          {/* Bottom Center Data Stream */}
-          <div style={{ position: 'absolute', bottom: '8vh', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--font-mono)', fontSize: '8px', letterSpacing: '0.5em', color: 'var(--gold)', opacity: 0.3, whiteSpace: 'nowrap' }}>
+          {/* Bottom Center Data Stream (Desktop) */}
+          <div className="hidden md:block" style={{ position: 'absolute', bottom: '8vh', left: '50%', transform: 'translateX(-50%)', fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vw, 12px)', letterSpacing: '0.5em', color: 'var(--gold)', opacity: 0.3, whiteSpace: 'nowrap' }}>
             [ AUDIO VISUAL FEED ENCRYPTED ]
           </div>
 
@@ -229,14 +249,14 @@ export default function TheCrest() {
             <line x1="427" y1="427" x2="399" y2="399" stroke="var(--gold)" strokeWidth="2" />
           </svg>
 
-          <div style={{
+          <div className="hidden md:flex" style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
+            fontSize: 'clamp(9px, 1vw, 14px)',
             letterSpacing: '0.5em',
             color: 'var(--gold)',
             opacity: 0.8,
             marginBottom: '3vh',
-            display: 'flex', alignItems: 'center', gap: '12px'
+            alignItems: 'center', gap: '12px'
           }}>
             <ShieldAlert size={14} /> [ INITIATING BATTLE PROTOCOL ]
           </div>
@@ -255,9 +275,9 @@ export default function TheCrest() {
             OUR<br />BATTLEFIELDS
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2vw', marginTop: '5vh' }}>
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: '2vw', marginTop: '5vh' }}>
             <div style={{ width: '12vw', height: '1px', background: 'var(--gold)', opacity: 0.5 }} />
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.4em', color: 'var(--gold)', opacity: 1 }}>TARGET LOCKED</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(8px, 1vw, 12px)', letterSpacing: '0.4em', color: 'var(--gold)', opacity: 1 }}>TARGET LOCKED</div>
             <div style={{ width: '12vw', height: '1px', background: 'var(--gold)', opacity: 0.5 }} />
           </div>
         </div>

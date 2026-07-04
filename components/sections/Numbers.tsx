@@ -34,13 +34,21 @@ export default function Numbers() {
       )
     })
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     // CountUp logic
     sectionRef.current?.querySelectorAll('[data-countup]').forEach(el => {
       const end    = Number(el.getAttribute('data-end'))
       const suffix = el.getAttribute('data-suffix') || ''
+      
+      if (prefersReducedMotion) {
+        return // Leave the statically rendered final number
+      }
+      
       const obs = new IntersectionObserver(([e]) => {
         if (e.isIntersecting) { 
           new CountUp(el as HTMLElement, end, { 
+            startVal: 0,
             suffix, 
             duration: 2.5,
             useEasing: true,
@@ -122,7 +130,7 @@ export default function Numbers() {
               color: s.highlight ? 'var(--crimson)' : 'var(--gold)',
               marginBottom: '1.5rem',
               letterSpacing: '-0.02em',
-            }}>0{s.suffix}</span>
+            }}>{s.value}{s.suffix}</span>
             
             <span style={{
               fontFamily: 'var(--font-mono)',

@@ -4,7 +4,7 @@ import { GALLERY } from '@/lib/constants'
 import Lightbox from '@/components/ui/Lightbox'
 import { gsap, ScrollTrigger } from '@/lib/gsap-init'
 import type { GalleryPhoto } from '@/types/event'
-import { onImgError } from '@/lib/imgFallback'
+import Image from 'next/image'
 
 type Filter = 'all' | 'mirth' | 'sparkz' | 'halloween'
 const FILTERS: { label: string; value: Filter }[] = [
@@ -65,11 +65,12 @@ const BENTO_CELLS: { colSpan: number; rowSpan: number }[] = [
 
 // ── Single Card ───────────────────────────────────────────────────────────────
 function GalleryCard({
-  photo, idx, onClick,
+  photo, idx, onClick, isTouch
 }: {
   photo: GalleryPhoto
   idx: number
   onClick: () => void
+  isTouch: boolean
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLImageElement>(null)
@@ -108,18 +109,20 @@ function GalleryCard({
   }, [idx])
 
   const enter = useCallback(() => {
+    if (isTouch) return
     setHovered(true)
     gsap.to(cardRef.current, { scale: 1.04, zIndex: 10, duration: 0.45, ease: 'power2.out', overwrite: true })
     gsap.to(imgRef.current, { filter: 'grayscale(0%) brightness(0.80)', scale: 1.06, duration: 0.5 })
     gsap.to(frameRef.current, { borderColor: 'var(--gold)', duration: 0.28 })
-  }, [])
+  }, [isTouch])
 
   const leave = useCallback(() => {
+    if (isTouch) return
     setHovered(false)
     gsap.to(cardRef.current, { scale: 1, zIndex: 1, duration: 0.4, ease: 'power2.inOut', overwrite: true })
     gsap.to(imgRef.current, { filter: 'grayscale(100%) brightness(0.6)', scale: 1, duration: 0.45 })
     gsap.to(frameRef.current, { borderColor: 'rgba(201,168,76,0.25)', duration: 0.28 })
-  }, [])
+  }, [isTouch])
 
   return (
     <div
@@ -143,16 +146,15 @@ function GalleryCard({
       }}
     >
       {/* Photo */}
-      <img
+      <Image
         ref={imgRef}
         src={photo.src}
         alt={photo.alt}
-        onError={onImgError}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
         style={{
-          position: 'absolute', inset: 0,
-          width: '100%', height: '100%',
           objectFit: 'cover',
-          filter: 'grayscale(100%) brightness(0.6)',
+          filter: isTouch ? 'grayscale(20%) brightness(0.8)' : 'grayscale(100%) brightness(0.6)',
           transformOrigin: 'center',
         }}
       />
@@ -166,7 +168,7 @@ function GalleryCard({
       {/* Gold border — always visible, brightens on hover */}
       <div ref={frameRef} style={{
         position: 'absolute', inset: 0, zIndex: 4,
-        border: '1.5px solid rgba(201,168,76,0.25)', borderRadius: 14, pointerEvents: 'none',
+        border: `1.5px solid ${isTouch ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.25)'}`, borderRadius: 14, pointerEvents: 'none',
         transition: 'border-color 0.28s ease',
       }} />
 
@@ -176,7 +178,7 @@ function GalleryCard({
           fontFamily: 'var(--font-display)',
           fontSize: 'clamp(13px, 1.4vw, 18px)',
           letterSpacing: '0.18em',
-          color: hovered ? 'var(--gold)' : 'rgba(255,255,255,0.55)',
+          color: (hovered || isTouch) ? 'var(--gold)' : 'rgba(255,255,255,0.55)',
           textTransform: 'uppercase',
           margin: 0,
           transition: 'color 0.3s ease',
@@ -190,6 +192,7 @@ function GalleryCard({
 export default function TheStage() {
   const [filter, setFilter] = useState<Filter>('all')
   const [lightbox, setLightbox] = useState<GalleryPhoto | null>(null)
+  const [isTouch, setIsTouch] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
@@ -200,6 +203,10 @@ export default function TheStage() {
   const labelRef = useRef<HTMLSpanElement>(null)
 
   const filtered = filter === 'all' ? GALLERY : GALLERY.filter(p => p.event === filter)
+
+  useEffect(() => {
+    setIsTouch(!window.matchMedia('(hover: hover) and (pointer: fine)').matches)
+  }, [])
 
   useEffect(() => {
     if (!headerRef.current || !sectionRef.current || !contentRef.current) return
@@ -278,6 +285,10 @@ export default function TheStage() {
                     border: `1px solid ${filter === f.value ? 'var(--gold)' : 'var(--border)'}`,
                     fontFamily: 'var(--font-display)', fontSize: 13, letterSpacing: '0.1em',
                     padding: '7px 20px', borderRadius: 'var(--r-sm)', cursor: 'pointer', transition: 'all 0.25s',
+                    minHeight: '44px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}>{f.label}</button>
               ))}
             </div>
@@ -296,6 +307,7 @@ export default function TheStage() {
                 key={photo.id}
                 photo={photo}
                 idx={i}
+                isTouch={isTouch}
                 onClick={() => setLightbox(photo)}
               />
             ))}
@@ -305,7 +317,7 @@ export default function TheStage() {
             marginTop: '2rem', borderTop: '1px solid var(--border)', paddingTop: '1rem',
             fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--sub)', letterSpacing: '0.3em', textTransform: 'uppercase'
           }}>
-            Hover to reveal · Click to open full photo
+            {isTouch ? 'Tap to view full photo' : 'Hover to reveal · Click to open full photo'}
           </div>
         </div>
       </div>
